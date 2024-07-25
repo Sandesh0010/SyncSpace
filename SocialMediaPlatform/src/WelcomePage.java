@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
@@ -29,6 +31,33 @@ public class WelcomePage {
         center.add(confirmPassword);
         JButton createAccount = new JButton("Create account?", 45, 20);
         center.add(createAccount);
+
+        createAccount.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(firstName.getText().equals("")){
+                    firstName.setText("FirstName cannot be empty");
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+            }
+            
+        });
 
         panel.add(center,BorderLayout.CENTER);
 
