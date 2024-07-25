@@ -30,6 +30,7 @@ public class LoginPage {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                
             }
 
             @Override
@@ -53,7 +54,7 @@ public class LoginPage {
         panel.add(center,BorderLayout.CENTER);
 
         JLabel createNewAcc = new JLabel("Don't have an account?Create account.", 20, Color.black, Font.BOLD);
-        //createNewAcc.
+        
         
         createNewAcc.setCursor(new Cursor(Cursor.HAND_CURSOR));
         createNewAcc.setHorizontalAlignment(JLabel.CENTER);

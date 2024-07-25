@@ -40,6 +40,26 @@ public class WelcomePage {
                     new Alert("First Name cannot be empty", frame);
                     return;
                 }
+                if(lastName.getText().equals("")){
+                    new Alert("Last Name cannot be empty", frame);
+                    return;
+                }
+                if(email.getText().equals("")){
+                    new Alert("Email field cannot be empty", frame);
+                    return;
+                }
+                if(password.getText().equals("")){
+                    new Alert("Password field cannot be empty", frame);
+                    return;
+                }
+                if(password.getText().length()<8){
+                    new Alert("Password must be at least 8 characters", frame);
+                }
+                if(password.getText()!=confirmPassword.getText()){
+                    new Alert("Password and Confirm Password must match", frame);
+                }
+                
+                
             }
 
             @Override

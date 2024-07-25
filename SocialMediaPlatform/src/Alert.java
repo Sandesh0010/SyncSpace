@@ -21,7 +21,7 @@ public class Alert {
         title.setHorizontalAlignment(JLabel.CENTER);
         panel.add(title, BorderLayout.NORTH);
 
-        JLabel msg = new JLabel(content, 24, Color.black, Font.BOLD);
+        JLabel msg = new JLabel(content, 15, Color.black, Font.BOLD);
         msg.setHorizontalAlignment(JLabel.CENTER);
         panel.add(msg,BorderLayout.CENTER);
 
