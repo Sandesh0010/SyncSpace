@@ -21,6 +21,7 @@ public class Database{
            e.printStackTrace();
         }
     } 
+    
     public Statement getStatement() {
         return statement;
     }

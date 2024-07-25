@@ -29,7 +29,7 @@ public class WelcomePage {
         center.add(password);
         JTextField confirmPassword = new JTextField("Confirm Password");
         center.add(confirmPassword);
-        JButton createAccount = new JButton("Create account?", 45, 20);
+        JButton createAccount = new JButton("Create account", 45, 20);
         center.add(createAccount);
 
         createAccount.addMouseListener(new MouseListener() {
@@ -37,7 +37,8 @@ public class WelcomePage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(firstName.getText().equals("")){
-                    firstName.setText("FirstName cannot be empty");
+                    new Alert("First Name cannot be empty", frame);
+                    return;
                 }
             }
 
@@ -65,6 +66,33 @@ public class WelcomePage {
         login.setCursor(new Cursor(Cursor.HAND_CURSOR));
         login.setHorizontalAlignment(JLabel.CENTER);
 
+        login.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new LoginPage();
+                frame.dispose();
+                
+                }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+               }
+            
+        });
+        
         panel.add(login,BorderLayout.SOUTH);
 
         frame.getContentPane().add(panel);
