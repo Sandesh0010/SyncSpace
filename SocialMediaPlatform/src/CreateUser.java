@@ -1,3 +1,4 @@
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,18 +8,15 @@ public class CreateUser {
     private User u;
     private Database database;
     public CreateUser(User u, Database database){
-        this.u=u;
-        this.database=database;
+        
         
     }
-    public void create(){
-        String insert= "INSERT into users (FirstName,LastName,Email,password) values ("+u.getFirstName()+","+u.getLastName()+","+u.getEmail()+","+u.getPassword()+");";
-                try {
-                    database.getStatement().execute(insert);
-                } catch (SQLException e) {
-                    new  Alert(null, e.getMessage(),null);
-                    
-                }
+    public void create() throws SQLException{
+        //String insert= "INSERT into users (FirstName,LastName,Email,password) values ("+u.getFirstName()+","+u.getLastName()+","+u.getEmail()+","+u.getPassword()+");";
+        PreparedStatement insertStatement= database.conn.prepareStatement("INSERT into users (FirstName,LastName,Email,password) values (?,?,?,?)");
+
+        insertStatement.executeUpdate();
+                
     }
     
     public boolean isEmailUsed() {
@@ -30,7 +28,7 @@ public class CreateUser {
             rs.next();
             u.setID(rs.getInt("ID"));
         } catch (SQLException e) {
-            new Alert(null, e.getMessage(),null);
+            //new Alert( e.getMessage(),null);
             
         }
         

@@ -1,17 +1,19 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
 public class WelcomePage {
+    Database database;
     public WelcomePage(){
         JFrame frame = new JFrame("Welcome Page");
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.lightGray);
-
+         database = new Database();
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(null);
         panel.setBorder(BorderFactory.createEmptyBorder(53, 84, 76, 84));
@@ -54,9 +56,19 @@ public class WelcomePage {
                 }
                 if(password.getText().length()<8){
                     new Alert("Password must be at least 8 characters", frame);
+                    return;
                 }
-                if(password.getText()!=confirmPassword.getText()){
+                if(password.getText().equals(confirmPassword.getText())){
+                    try {
+                        database.create(firstName.getText(),lastName.getText(),email.getText(),password.getText());
+                    } catch (SQLException e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
+                }
+                else{
                     new Alert("Password and Confirm Password must match", frame);
+                    return;
                 }
                 
                 

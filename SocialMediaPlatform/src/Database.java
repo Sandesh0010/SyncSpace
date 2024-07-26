@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,18 +11,36 @@ public class Database{
         String db_user = "root";
         String db_password = "root";
         private Statement statement;
+        Connection conn;
         
 
     public Database(){
         try {
-            Connection conn=DriverManager.getConnection(URL, db_user, db_password);
-            statement=conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+            } catch (ClassNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+             conn=DriverManager.getConnection(URL, db_user, db_password);
+            
         } catch (SQLException e) {
        
            e.printStackTrace();
         }
     } 
     
+    public void create(String firstName, String lastName, String email, String password) throws SQLException{
+        //String insert= "INSERT into users (FirstName,LastName,Email,password) values ("+u.getFirstName()+","+u.getLastName()+","+u.getEmail()+","+u.getPassword()+");";
+        PreparedStatement insertStatement= conn.prepareStatement("INSERT into users (FirstName,LastName,Email,Password) values (?,?,?,?)");
+        insertStatement.setString(1, firstName);
+        insertStatement.setString(2, lastName);
+        insertStatement.setString(3, email);
+        insertStatement.setString(4, password);
+        insertStatement.executeUpdate();
+                
+    }
+
     public Statement getStatement() {
         return statement;
     }
