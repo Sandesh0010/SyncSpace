@@ -9,8 +9,9 @@ public class Database{
    
         String URL = "jdbc:mysql://localhost:3306/social_media_platform";
         String db_user = "root";
-        String db_password = "root";
+        String db_password = "sugam@123";
         private Statement statement;
+        User user;
         Connection conn;
         
 
@@ -41,23 +42,34 @@ public class Database{
 
     }
 
-    public User loginUser(String email, String password) throws SQLException{
-        User user = new User();
+    public boolean checkloginUser(String email, String password) throws SQLException{
         PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
         ResultSet rs = viewStatement.executeQuery();
         while (rs.next()) {
             if((email.equals(rs.getString("Email")))&&password.equals(rs.getString("Password"))){
+                 user = new User();
                 user.setID(rs.getInt("ID"));
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
                 user.setEmail(rs.getString("Email"));
-                user.setPassword(rs.getString("Password"));
                 new Userpage(user);
             }
-           
-           
         }
+        return false; 
+    }
 
+    public User getloginUser(String email, String password) throws SQLException{
+        PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
+        ResultSet rs = viewStatement.executeQuery();
+        user = new User();
+        while (rs.next()) {
+            if((email.equals(rs.getString("Email")))&&password.equals(rs.getString("Password"))){   
+                user.setID(rs.getInt("ID"));
+                user.setFirstName(rs.getString("FirstName"));
+                user.setLastName(rs.getString("LastName"));
+                user.setEmail(rs.getString("Email"));
+            }
+        }
         return user;
     }
 

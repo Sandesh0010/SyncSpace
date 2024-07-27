@@ -1,16 +1,20 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 
 public class LoginPage {
+    Database database;
     public LoginPage(){
         JFrame frame = new JFrame("Login Page");
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setBackground(Color.lightGray);
+
+        database = new Database();
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(null);
@@ -31,6 +35,20 @@ public class LoginPage {
             @Override
             public void mouseClicked(MouseEvent e) {
                 
+                try {
+                    if(database.checkloginUser(email.getText(), password.getText())){
+                        new Alert("Success", frame);
+                        User user = database.getloginUser(email.getText(), password.getText());
+                        new Userpage(user);
+                        frame.dispose();
+                    }      
+                    else{
+                        new Alert("Invalid email or password", frame);
+                    }
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
 
             @Override
