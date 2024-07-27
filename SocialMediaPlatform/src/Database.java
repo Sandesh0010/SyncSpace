@@ -30,7 +30,7 @@ public class Database{
         }
     } 
     
-    public void create(String firstName, String lastName, String email, String password) throws SQLException{
+    public void createUser(String firstName, String lastName, String email, String password) throws SQLException{
         //String insert= "INSERT into users (FirstName,LastName,Email,password) values ("+u.getFirstName()+","+u.getLastName()+","+u.getEmail()+","+u.getPassword()+");";
         PreparedStatement insertStatement= conn.prepareStatement("INSERT into users (FirstName,LastName,Email,Password) values (?,?,?,?)");
         insertStatement.setString(1, firstName);
@@ -38,8 +38,29 @@ public class Database{
         insertStatement.setString(3, email);
         insertStatement.setString(4, password);
         insertStatement.executeUpdate();
-                
+
     }
+
+    public User loginUser(String email, String password) throws SQLException{
+        User user = new User();
+        PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
+        ResultSet rs = viewStatement.executeQuery();
+        while (rs.next()) {
+            if((email.equals(rs.getString("Email")))&&password.equals(rs.getString("Password"))){
+                user.setID(rs.getInt("ID"));
+                user.setFirstName(rs.getString("FirstName"));
+                user.setLastName(rs.getString("LastName"));
+                user.setEmail(rs.getString("Email"));
+                user.setPassword(rs.getString("Password"));
+                new Userpage(user);
+            }
+           
+           
+        }
+
+        return user;
+    }
+
 
     public Statement getStatement() {
         return statement;

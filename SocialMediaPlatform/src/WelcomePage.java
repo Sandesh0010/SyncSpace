@@ -60,7 +60,7 @@ public class WelcomePage {
                 }
                 if(password.getText().equals(confirmPassword.getText())){
                     try {
-                        database.create(firstName.getText(),lastName.getText(),email.getText(),password.getText());
+                        database.createUser(firstName.getText(),lastName.getText(),email.getText(),password.getText());
                     } catch (SQLException e1) {
                         // TODO Auto-generated catch block
                         e1.printStackTrace();
@@ -102,8 +102,8 @@ public class WelcomePage {
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                new LoginPage();
-                frame.dispose();
+                    new LoginPage();
+                    frame.dispose();
                 
                 }
 
