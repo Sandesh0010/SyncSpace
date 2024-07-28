@@ -61,7 +61,7 @@ public class Userpage {
         north.add(new JLabel("Home", 20, Color.black, Font.BOLD));
         header.add(north,BorderLayout.NORTH);
 
-        JTextArea postIn = new JTextArea("Write Something on your Post?:....", 18, 20);
+        JTextArea postIn = new JTextArea("What's on your mind today?:....", 18, 20);
         header.add(new JScrollPane(postIn),BorderLayout.CENTER);
 
         JPanel south = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -69,6 +69,16 @@ public class Userpage {
 
         JButton postButton = new JButton("Post",35,20 );
         postButton.setPreferredSize(new Dimension(80,40));
+        south.add(postButton);
+        header.add(south,BorderLayout.SOUTH);
+        
+        panel.add(header);
+        panel.add(Box.createVerticalStrut(7));
+        panel.add(new Post());
+        int i=0;
+        
+        frame.add(new JScrollPane(panel),BorderLayout.CENTER);
+        frame.add(Box.createHorizontalStrut(182),BorderLayout.EAST);
         
 
         frame.setVisible(true);

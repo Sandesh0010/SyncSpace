@@ -12,7 +12,7 @@ public class JTextArea extends javax.swing.JTextArea {
         setFont(new Font("Sergoe UI",Font.BOLD,textSize));
         setBackground(null);
         setText(hint);
-        setForeground(Color.lightGray);
+        setForeground(Color.LIGHT_GRAY);
         setBorder(BorderFactory.createEmptyBorder(padding,padding,padding,padding));
 
         addFocusListener(new FocusListener() {
@@ -29,7 +29,7 @@ public class JTextArea extends javax.swing.JTextArea {
             public void focusGained(FocusEvent e) {
                 if(getText().equals(hint)){
                     setText("");
-                    setForeground(Color.LIGHT_GRAY);
+                    setForeground(Color.BLACK);
                 }
                }
             
