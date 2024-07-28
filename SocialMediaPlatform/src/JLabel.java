@@ -1,5 +1,7 @@
 import java.awt.Color;
 import java.awt.Font;
+
+import javax.swing.ImageIcon;
 @SuppressWarnings("serial")
 public class JLabel extends javax.swing.JLabel {
     public JLabel(String text, int textSize, Color color, int style){

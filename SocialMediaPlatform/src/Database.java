@@ -52,7 +52,7 @@ public class Database{
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
                 user.setEmail(rs.getString("Email"));
-                new Userpage(user);
+                return true;
             }
         }
         return false; 

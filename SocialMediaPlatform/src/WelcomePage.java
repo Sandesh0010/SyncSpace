@@ -124,6 +124,7 @@ public class WelcomePage {
                }
             
         });
+
         
         panel.add(login,BorderLayout.SOUTH);
 
