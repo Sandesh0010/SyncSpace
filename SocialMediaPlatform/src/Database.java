@@ -58,6 +58,17 @@ public class Database{
         return false; 
     }
 
+    public boolean checkemail(String email) throws SQLException{
+        PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
+        ResultSet rs = viewStatement.executeQuery();
+        while (rs.next()) {
+            if(email.equals(rs.getString("Email"))){
+                return false;
+            }
+        }
+        return true; 
+    }
+
     public User getloginUser(String email, String password) throws SQLException{
         PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
         ResultSet rs = viewStatement.executeQuery();

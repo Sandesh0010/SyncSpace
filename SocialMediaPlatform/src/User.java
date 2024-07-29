@@ -5,9 +5,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
-    private ArrayList<Post> posts;
+    private ArrayList<PostModel> posts;
     private ArrayList<Comment> comments;
-    private ArrayList<Post> likes;
+    private ArrayList<PostModel> likes;
     private ArrayList<User> friends;
     
     public User(){
@@ -55,11 +55,11 @@ public class User {
         this.password = password;
     }
 
-    public ArrayList<Post> getPosts(){
+    public ArrayList<PostModel> getPosts(){
         return posts;
     }
 
-    public void setPosts(ArrayList<Post> posts){
+    public void setPosts(ArrayList<PostModel> posts){
         this.posts = posts;
     }
 
@@ -71,11 +71,11 @@ public class User {
         this.comments = comments;
     }
 
-    public ArrayList<Post> getLikes(){
+    public ArrayList<PostModel> getLikes(){
         return likes;
     }
 
-    public void setLikes(ArrayList<Post> likes){
+    public void setLikes(ArrayList<PostModel> likes){
         this.likes = likes;
     }
 

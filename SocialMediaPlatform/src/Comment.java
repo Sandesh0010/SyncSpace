@@ -1,21 +1,7 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JPanel;
-
+import javax.swing.*;
+import java.awt.*;
 public class Comment extends JPanel{
-    private int ID;
-    private String content;
-    private User user;
-    private LocalDateTime dateTime;
-
+    
     public Comment(){
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setBackground(Color.white);
@@ -46,37 +32,5 @@ public class Comment extends JPanel{
         setMaximumSize(dimension);
         setMinimumSize(dimension);
 
-    }
-
-    public int getID(){
-        return ID;
-    }
-
-    public void setID(int ID){
-        this.ID = ID;
-    }
-
-    public String getContent(){
-        return content;
-    }
-
-    public void setContent(String content){
-        this.content = content;
-    }
-
-    public User getUser(){
-        return user;
-    }
-
-    public void setUser(User user){
-        this.user = user;
-    }
-
-    public LocalDateTime getDateTime(){
-        return dateTime;
-    }
-
-    public void setDateTime(LocalDateTime dateTime){
-        this.dateTime = dateTime;
     }
 }

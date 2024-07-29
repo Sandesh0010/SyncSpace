@@ -60,18 +60,21 @@ public class WelcomePage {
                 }
                 if(password.getText().equals(confirmPassword.getText())){
                     try {
-                        database.createUser(firstName.getText(),lastName.getText(),email.getText(),password.getText());
+                        if(database.checkemail(email.getText())){
+                            database.createUser(firstName.getText(),lastName.getText(),email.getText(),password.getText());
+                        }
+                        else{
+                            new Alert("Email already exists", frame);
+                        }
+                        
                     } catch (SQLException e1) {
-                        // TODO Auto-generated catch block
-                        e1.printStackTrace();
                     }
+                    
                 }
                 else{
                     new Alert("Password and Confirm Password must match", frame);
                     return;
                 }
-                
-                
             }
 
             @Override

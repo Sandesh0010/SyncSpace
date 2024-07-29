@@ -15,7 +15,10 @@ import javax.swing.JPanel;
 public class CustomView {
     public CustomView(){
         JFrame frame = new JFrame();
-
+        frame.setSize(900,625);
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.getContentPane().setBackground(Color.lightGray);
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(null);
