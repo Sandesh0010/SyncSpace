@@ -62,6 +62,7 @@ public class WelcomePage {
                     try {
                         if(database.checkemail(email.getText())){
                             database.createUser(firstName.getText(),lastName.getText(),email.getText(),password.getText());
+                            new Alert("Registration Successful. Go to login.", frame);
                         }
                         else{
                             new Alert("Email already exists", frame);

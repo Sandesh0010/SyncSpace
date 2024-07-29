@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -81,6 +82,13 @@ public class Userpage {
                     new Alert("Post cannot be empty", frame);
                     return;
                 }
+                PostModel post = new PostModel(postIn.getText(),user);
+                try {
+                    database.createPost(postIn.getText(),user,post.getDateTimeToString());
+                    new Alert("Successfully Posted", frame);
+                    postIn.setText("");
+                } catch (SQLException e1) {
+                }
             }
 
             @Override
@@ -107,7 +115,6 @@ public class Userpage {
         panel.add(header);
         panel.add(Box.createVerticalStrut(7));
         panel.add(new Post());
-        int i=0;
         
         frame.add(new JScrollPane(panel),BorderLayout.CENTER);
         frame.add(Box.createHorizontalStrut(182),BorderLayout.EAST);

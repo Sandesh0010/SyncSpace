@@ -42,12 +42,14 @@ public class CustomView {
         panel.add(header);
         for(int i=0;i<10;i++){
             panel.add(Box.createVerticalStrut(7));
-                if(i%2==0){
-                    panel.add(new Post());
-                }
-                else{
-                    panel.add(new Comment());
-                }
+            panel.add(new Friend());
+                // if(i%2==0){
+                //     panel.add(new Post());
+                // }
+                // else{
+                //     panel.add(new Comment());
+                // }
+
         }
 
         frame.add(new JScrollPane(panel));

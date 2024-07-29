@@ -29,7 +29,7 @@ public class JButton extends JLabel {
     //for rounded border
     protected void paintBorder(Graphics g){
         g.setColor(Color.blue);
-        g.drawRoundRect(0,0,getWidth(), getHeight(), radius,radius);
+        g.drawRoundRect(0,0,getWidth()-1, getHeight()-1, radius,radius);
     }
 
     public boolean contains(int x, int y){

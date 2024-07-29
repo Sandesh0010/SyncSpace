@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+
+import javax.swing.JFrame;
 public class Database{
    
         String URL = "jdbc:mysql://localhost:3306/social_media_platform";
@@ -82,6 +85,18 @@ public class Database{
             }
         }
         return user;
+    }
+
+    public void createPost(String post, User user,String time) throws SQLException{
+
+            PreparedStatement postinsertStatement= conn.prepareStatement("INSERT into posts (Content,userID,DateTime) values (?,?,?)");
+            postinsertStatement.setString(1, post);
+            postinsertStatement.setInt(2, user.getID());
+            postinsertStatement.setString(3, time);
+            
+            postinsertStatement.executeUpdate();
+       
+       
     }
 
 
