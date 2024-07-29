@@ -3,6 +3,7 @@ import java.awt.Dimension;
 
 import javax.swing.JComponent;
 import javax.swing.JScrollBar;
+import javax.swing.JViewport;
 import javax.swing.plaf.basic.BasicScrollBarUI;
 
 public class JScrollPane extends javax.swing.JScrollPane {
@@ -15,6 +16,7 @@ public class JScrollPane extends javax.swing.JScrollPane {
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(null);
         scrollBar.setBorder(null);
+        scrollBar.setUnitIncrement(30);
         scrollBar.setUI(new BasicScrollBarUI(){
             @Override
             protected void configureScrollBarColors(){

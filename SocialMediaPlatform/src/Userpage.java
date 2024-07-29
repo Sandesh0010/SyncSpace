@@ -43,7 +43,9 @@ public class Userpage {
         sideBar.add(Box.createVerticalStrut(5));
 
         frame.add(sideBar,BorderLayout.WEST);
-      
+        //yaha samma left ko lagi
+
+      //aba right side ko lagi
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(null);
