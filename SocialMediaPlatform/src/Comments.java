@@ -9,9 +9,10 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.xml.crypto.Data;
 
 public class Comments {
-    public Comments(){
+    public Comments(User user, Database database){
         JFrame frame = new JFrame();
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
@@ -36,15 +37,15 @@ public class Comments {
         sideBar.add(profile);
 
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Home", "post"));
+        sideBar.add(new SideButton("Home", "post",user,database));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Post", "post"));
+        sideBar.add(new SideButton("Post", "post",user,database));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Like", "like"));
+        sideBar.add(new SideButton("Like", "like",user,database));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Comment", "comment"));
+        sideBar.add(new SideButton("Comment", "comment",user,database));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Friends", "friend"));
+        sideBar.add(new SideButton("Friends", "friend",user,database));
         sideBar.add(Box.createVerticalStrut(5));
 
         frame.add(sideBar,BorderLayout.WEST);

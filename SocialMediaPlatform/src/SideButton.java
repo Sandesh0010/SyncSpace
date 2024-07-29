@@ -1,19 +1,13 @@
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
+import java.awt.event.*;
+import java.sql.SQLException;
+import java.awt.*;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 //import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class SideButton extends JPanel {
-    public SideButton(String text, String pic){
+    public SideButton(String text, String pic, User user, Database database){
         super(new FlowLayout(FlowLayout.LEFT,10,10));
         setMaximumSize(new Dimension(180,50));
         setBackground(Color.WHITE);
@@ -24,6 +18,12 @@ public class SideButton extends JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                try {
+                    new CustomView(text,user,database);
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
             }
 
             @Override

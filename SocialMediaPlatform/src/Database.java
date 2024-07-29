@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 public class Database{
@@ -99,7 +100,21 @@ public class Database{
        
     }
 
-
+    public ArrayList<User> getUsers() throws SQLException{
+        ArrayList<User> users = new ArrayList<>();
+        PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
+        ResultSet rs = viewStatement.executeQuery();
+        while (rs.next()) {
+                User u = new User();
+                u.setID(rs.getInt("ID"));
+                u.setFirstName(rs.getString("FirstName"));
+                u.setLastName(rs.getString("LastName"));
+                u.setEmail(rs.getString("Email"));
+                if(u.getID()!=user.getID())
+                    users.add(u);
+            }
+        return users;
+    }
     public Statement getStatement() {
         return statement;
     }

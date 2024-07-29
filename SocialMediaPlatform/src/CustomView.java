@@ -4,6 +4,8 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -13,7 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class CustomView {
-    public CustomView(){
+    public CustomView(String view, User user, Database database) throws SQLException{
         JFrame frame = new JFrame();
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
@@ -40,17 +42,30 @@ public class CustomView {
         header.add(north,BorderLayout.NORTH);
 
         panel.add(header);
-        for(int i=0;i<10;i++){
-            panel.add(Box.createVerticalStrut(7));
-            panel.add(new Friend());
-                // if(i%2==0){
-                //     panel.add(new Post());
-                // }
-                // else{
-                //     panel.add(new Comment());
-                // }
-
+        switch (view) {
+            case "Friends":
+               
+                    ArrayList<User> users = database.getUsers();
+                for(User u : users){
+                    panel.add(Box.createVerticalStrut(7));
+                    panel.add(new Friend(user,u));
+                }
+                break;
+        
+            default:
+                break;
         }
+        // for(int i=0;i<10;i++){
+        //     panel.add(Box.createVerticalStrut(7));
+        //     panel.add(new Friend());
+        //         // if(i%2==0){
+        //         //     panel.add(new Post());
+        //         // }
+        //         // else{
+        //         //     panel.add(new Comment());
+        //         // }
+
+        // }
 
         frame.add(new JScrollPane(panel));
         frame.setVisible(true);
