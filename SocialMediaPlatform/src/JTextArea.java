@@ -7,8 +7,10 @@ import java.awt.event.FocusListener;
 import javax.swing.BorderFactory;
 
 public class JTextArea extends javax.swing.JTextArea {
+    private String hint;
     public JTextArea(String hint, int textSize, int padding){
         super();
+        this.hint = hint;
         setFont(new Font("Sergoe UI",Font.BOLD,textSize));
         setBackground(null);
         setText(hint);
@@ -44,5 +46,7 @@ public class JTextArea extends javax.swing.JTextArea {
         setPreferredSize(new Dimension(1000, (int) getPreferredSize().getHeight()));
 
     }
-    
+    public boolean isEmpty(){
+        return getText().equals(hint)||getText().equals("");
+    }
 }

@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -70,6 +73,33 @@ public class Userpage {
         south.setBackground(null);
 
         JButton postButton = new JButton("Post",35,20 );
+        postButton.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(postIn.isEmpty()){
+                    new Alert("Post cannot be empty", frame);
+                    return;
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+           }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                    }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+           }
+            
+        });
         postButton.setPreferredSize(new Dimension(80,40));
         south.add(postButton);
         header.add(south,BorderLayout.SOUTH);

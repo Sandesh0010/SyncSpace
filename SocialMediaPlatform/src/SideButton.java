@@ -5,7 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -18,8 +18,6 @@ public class SideButton extends JPanel {
         setMaximumSize(new Dimension(180,50));
         setBackground(Color.WHITE);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
-        
-       
         
         add(new JLabel(text,20,Color.decode("#0f0f0f"),Font.BOLD));
         addMouseListener(new MouseListener() {
