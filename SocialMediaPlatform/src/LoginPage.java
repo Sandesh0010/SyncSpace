@@ -25,7 +25,7 @@ public class LoginPage {
         center.setBorder(BorderFactory.createEmptyBorder(22,231,17,231));
         JTextField email = new JTextField("Email");
         center.add(email);
-        JTextField password = new JTextField("Password");
+        JPasswordField password = new JPasswordField("Password");
         center.add(password);
         JButton login = new JButton(" Login!", 45, 20);
         center.add(login);

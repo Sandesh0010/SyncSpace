@@ -27,9 +27,9 @@ public class WelcomePage {
         center.add(lastName);
         JTextField email = new JTextField("Email");
         center.add(email);
-        JTextField password = new JTextField("Password");
+        JPasswordField password = new JPasswordField("Password");
         center.add(password);
-        JTextField confirmPassword = new JTextField("Confirm Password");
+        JPasswordField confirmPassword = new JPasswordField("Confirm Password");
         center.add(confirmPassword);
         JButton createAccount = new JButton("Create account", 45, 20);
         center.add(createAccount);

@@ -3,12 +3,12 @@ import java.awt.event.*;
 import java.awt.geom.RoundRectangle2D;
 
 import javax.swing.BorderFactory;
-public class JTextField extends javax.swing.JTextField{
+public class JPasswordField extends javax.swing.JPasswordField{
    
     private Shape shape;
     private String hint;
 
-    public JTextField(String hint){
+    public JPasswordField(String hint){
         super();
         this.hint = hint;
         setFont(new Font("Sergeo UI",Font.BOLD,20));
