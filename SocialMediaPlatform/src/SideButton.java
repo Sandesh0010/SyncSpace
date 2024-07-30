@@ -21,8 +21,6 @@ public class SideButton extends JPanel {
                 try {
                     new CustomView(text,user,database);
                 } catch (SQLException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
                 }
             }
 

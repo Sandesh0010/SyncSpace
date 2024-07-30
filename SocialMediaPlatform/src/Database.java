@@ -24,8 +24,6 @@ public class Database{
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
             } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             }
              conn=DriverManager.getConnection(URL, db_user, db_password);
             
@@ -115,6 +113,7 @@ public class Database{
             }
         return users;
     }
+    
     public Statement getStatement() {
         return statement;
     }
