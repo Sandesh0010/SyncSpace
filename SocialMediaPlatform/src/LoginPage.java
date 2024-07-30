@@ -39,7 +39,7 @@ public class LoginPage {
                     if(database.checkloginUser(email.getText(), password.getText())){
                         new Alert("Success", frame);
                         User user = database.getloginUser(email.getText(), password.getText());
-                        new Userpage(user);
+                        new Userpage(user,database);
                         frame.dispose();
                     }      
                     else{

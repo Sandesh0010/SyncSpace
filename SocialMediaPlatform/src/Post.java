@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Post extends JPanel{
-    public Post(){
+    public Post(PostModel post){
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         setBackground(Color.white);
         setBorder(BorderFactory.createEmptyBorder(15,15,15,25));
@@ -10,10 +10,10 @@ public class Post extends JPanel{
         JPanel header = new JPanel(new BorderLayout());
         header.setBackground(null);
 
-        JLabel author = new JLabel("User Name", 20,Color.BLACK,Font.BOLD);
+        JLabel author = new JLabel(post.getUser().getName(), 20,Color.BLACK,Font.BOLD);
         header.add(author,BorderLayout.WEST);
 
-        JLabel date = new JLabel("Thu, 0 Jan 2024", 15, Color.lightGray, Font.PLAIN);
+        JLabel date = new JLabel(post.getDateToString(), 15, Color.lightGray, Font.PLAIN);
         header.add(date,BorderLayout.EAST);
         
         add(header);
@@ -21,7 +21,7 @@ public class Post extends JPanel{
 
         JPanel center = new JPanel(new FlowLayout(FlowLayout.LEADING));
         center.setBackground(null);
-        JTextArea content = new JTextArea("sdsadjsdkldadsjdkddksladkjdksadkasdksdakldldadklsadkdsakddkjsadkakaskdklasd",18,Color.BLACK, Font.PLAIN);
+        JTextArea content = new JTextArea(post.getContent(),18,Color.BLACK, Font.PLAIN);
         center.add(content);
         add(center);
         add(Box.createVerticalStrut(7));

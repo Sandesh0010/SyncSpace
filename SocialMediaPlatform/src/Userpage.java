@@ -2,20 +2,20 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 
 public class Userpage {
-    static Database database;
-    Userpage(User user){
-        database = new Database();
+    Userpage(User user,Database database){
+       
         JFrame frame = new JFrame("HomePage for User");
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().setLayout(new BorderLayout());
-
+        new GenerateTimeline(user, database);
         //sidebar ko lagi
         JPanel sideBar = new JPanel();
         sideBar.setBackground(Color.RED);
@@ -113,8 +113,12 @@ public class Userpage {
         header.add(south,BorderLayout.SOUTH);
         
         panel.add(header);
-        panel.add(Box.createVerticalStrut(7));
-        panel.add(new Post());
+
+        ArrayList<PostModel> posts = new GenerateTimeline(user, database).getPosts();
+        for(int i=0; i<posts.size();i++){
+            panel.add(Box.createVerticalStrut(7));
+            panel.add(new Post(posts.get(i)));
+        }
         
         frame.add(new JScrollPane(panel),BorderLayout.CENTER);
         frame.add(Box.createHorizontalStrut(182),BorderLayout.EAST);

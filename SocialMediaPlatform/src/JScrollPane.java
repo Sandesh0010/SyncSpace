@@ -17,6 +17,7 @@ public class JScrollPane extends javax.swing.JScrollPane {
         scrollBar.setBackground(null);
         scrollBar.setBorder(null);
         scrollBar.setUnitIncrement(30);
+        scrollBar.setValue(0);
         scrollBar.setUI(new BasicScrollBarUI(){
             @Override
             protected void configureScrollBarColors(){

@@ -10,9 +10,12 @@ public class PostModel{
     private LocalDateTime dateTime;
     private ArrayList<Comment> comments;
     private ArrayList<User> likes;
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-mm-dd hh:mm:ss");
-    
-    public PostModel(){}
+    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
+
+    public PostModel(){
+        
+    }
 
     public PostModel(String content, User user){
         this.content = content;
@@ -73,6 +76,8 @@ public class PostModel{
     }
     public void setDateTimeFromToString(String dateTime){
         this.dateTime = LocalDateTime.parse(dateTime, dateTimeFormatter);
-
+    }
+    public String getDateToString(){
+        return dateFormatter.format(dateTime);
     }
 }

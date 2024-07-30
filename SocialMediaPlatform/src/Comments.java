@@ -55,8 +55,8 @@ public class Comments {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(null);
 
-        panel.add(new Post());
-        panel.add(Box.createVerticalStrut(7));
+        // panel.add(new Post());
+        // panel.add(Box.createVerticalStrut(7));
 
         JPanel newComment = new JPanel(new BorderLayout());
         newComment.setBackground(Color.white);
