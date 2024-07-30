@@ -13,7 +13,8 @@ public class Database{
    
         String URL = "jdbc:mysql://localhost:3306/social_media_platform";
         String db_user = "root";
-        String db_password = "root";
+        String db_password = "sugam@123";
+        //String db_password = "root";
         private Statement statement;
         User user;
         Connection conn;
@@ -81,6 +82,16 @@ public class Database{
                 user.setFirstName(rs.getString("FirstName"));
                 user.setLastName(rs.getString("LastName"));
                 user.setEmail(rs.getString("Email"));
+                user.setPassword(rs.getString("Password"));
+
+                PreparedStatement arrayStatement = conn.prepareStatement("SELECT * from friends where user ="+ user.getID());
+                ResultSet rs2 = arrayStatement.executeQuery();
+                ArrayList<Integer> friendsID = new ArrayList<>();
+                while (rs2.next()) {
+                    friendsID.add(rs2.getInt("Friend"));
+                    user.setFriendsIDs(friendsID);
+                }
+
             }
         }
         return user;
@@ -98,7 +109,7 @@ public class Database{
        
     }
 
-    public ArrayList<User> getUsers() throws SQLException{
+    public ArrayList<User> getUsers(User user) throws SQLException{
         ArrayList<User> users = new ArrayList<>();
         PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
         ResultSet rs = viewStatement.executeQuery();
@@ -113,6 +124,26 @@ public class Database{
             }
         return users;
     }
+
+    public boolean addFriend(User user, User f){
+         try {
+         PreparedStatement addFriendStatement= conn.prepareStatement("INSERT into friends (User,Friend) values (?,?)");
+            addFriendStatement.setInt(1, user.getID());
+            addFriendStatement.setInt(2, f.getID());
+            addFriendStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) { return false;}
+    }
+
+    public boolean removeFriend(User user, User f){
+        try {
+        PreparedStatement removeFriendStatement= conn.prepareStatement("Delete from friends where User = ? AND Friend = ?;");
+           removeFriendStatement.setInt(1, user.getID());
+           removeFriendStatement.setInt(2, f.getID());
+           removeFriendStatement.executeUpdate();
+           return true;
+       } catch (SQLException e) { return false;}
+   }
     
     public Statement getStatement() {
         return statement;

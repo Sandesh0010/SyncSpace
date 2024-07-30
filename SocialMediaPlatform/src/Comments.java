@@ -38,15 +38,15 @@ public class Comments {
         sideBar.add(profile);
 
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Home", "post",user,database));
+        sideBar.add(new SideButton("Home", "post",user,database,frame));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Post", "post",user,database));
+        sideBar.add(new SideButton("Post", "post",user,database,frame));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Like", "like",user,database));
+        sideBar.add(new SideButton("Like", "like",user,database,frame));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Comment", "comment",user,database));
+        sideBar.add(new SideButton("Comment", "comment",user,database,frame));
         sideBar.add(Box.createVerticalStrut(5));
-        sideBar.add(new SideButton("Friends", "friend",user,database));
+        sideBar.add(new SideButton("Friends", "friend",user,database,frame));
         sideBar.add(Box.createVerticalStrut(5));
 
         frame.add(sideBar,BorderLayout.WEST);

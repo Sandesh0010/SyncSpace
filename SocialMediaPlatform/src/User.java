@@ -13,6 +13,11 @@ public class User {
 
     
     public User(){
+        posts = new ArrayList<>();
+        comments = new ArrayList<>();
+        likes = new ArrayList<>();
+        friends = new ArrayList<>();
+        friendID = new ArrayList<>();
 
     }
 
@@ -93,16 +98,25 @@ public class User {
         }
     }
 
-    public ArrayList<Integer> getFriendsIDs(){
-        ArrayList<Integer> ids = new ArrayList<>();
-        for(User friend : friends){
-            ids.add(friend.getID());
-        }
-        return ids;
+    public void setFriendsIDs(ArrayList<Integer> friendsIDs){
+        this.friendID = friendsIDs;
+    }
+    
+    public ArrayList<Integer> getFriendIDs(){
+        return friendID;
     }
 
     public boolean isFriend(User u){
         return friendID.contains(u.getID());
+    }
+
+    public void addFriend(User f){
+        friends.add(f);
+        friendID.add(f.getID());
+    }
+    public void removeFriend(User f){
+        friends.remove(f);
+        friendID.remove((Integer)f.getID());
     }
 
 }

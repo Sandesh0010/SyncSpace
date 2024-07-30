@@ -35,7 +35,7 @@ public class CustomView {
 
         JPanel north = new JPanel(new BorderLayout());
         north.setBackground(null);
-        north.add(new JLabel("My comments", 20, Color.black, Font.BOLD),BorderLayout.WEST);
+        north.add(new JLabel(view, 20, Color.black, Font.BOLD),BorderLayout.WEST);
         javax.swing.JLabel home = new javax.swing.JLabel(new ImageIcon("pics/home.png"));
         home.setCursor(new Cursor(Cursor.HAND_CURSOR));
         north.add(home,BorderLayout.EAST);
@@ -45,10 +45,10 @@ public class CustomView {
         switch (view) {
             case "Friends":
                
-                    ArrayList<User> users = database.getUsers();
+                    ArrayList<User> users = database.getUsers(user);
                 for(User u : users){
                     panel.add(Box.createVerticalStrut(7));
-                    panel.add(new Friend(user,u));
+                    panel.add(new Friend(user,database,u));
                 }
                 break;
         
