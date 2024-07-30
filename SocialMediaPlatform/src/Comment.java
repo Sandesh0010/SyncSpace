@@ -33,4 +33,6 @@ public class Comment extends JPanel{
         setMinimumSize(dimension);
 
     }
+    
+
 }

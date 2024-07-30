@@ -13,7 +13,7 @@ public class Database{
    
         String URL = "jdbc:mysql://localhost:3306/social_media_platform";
         String db_user = "root";
-        String db_password = "sugam@123";
+        String db_password = "root";
         private Statement statement;
         User user;
         Connection conn;
