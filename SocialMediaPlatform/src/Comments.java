@@ -17,6 +17,7 @@ public class Comments {
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Comment comm= new Comment();
 
         //sidebar
         JPanel sideBar = new JPanel();
