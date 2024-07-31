@@ -3,6 +3,9 @@ import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusAdapter;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,6 +16,8 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Icon;
+
 
 public class CustomView {
     public CustomView(String view, User user, Database database) throws SQLException{
@@ -36,8 +41,26 @@ public class CustomView {
         JPanel north = new JPanel(new BorderLayout());
         north.setBackground(null);
         north.add(new JLabel(view, 20, Color.black, Font.BOLD),BorderLayout.WEST);
-        javax.swing.JLabel home = new javax.swing.JLabel(new ImageIcon("pics/home.png"));
+        ImageIcon icon = new ImageIcon("C:\\Users\\Home\\Downloads\\"+view+".png");
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon imgIcon = new ImageIcon(newimg);
+        
+        javax.swing.JButton home = new javax.swing.JButton(imgIcon);
+        home.setPreferredSize(new Dimension(40,40));
+        //javax.swing.JButton home = new javax.swing.JButton(new ImageIcon("home.jpg"));
         home.setCursor(new Cursor(Cursor.HAND_CURSOR));
+
+        home.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new Userpage(user, database);
+                frame.dispose();
+            }
+            
+        });
+
         north.add(home,BorderLayout.EAST);
         header.add(north,BorderLayout.NORTH);
 
