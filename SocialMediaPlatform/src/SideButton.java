@@ -18,8 +18,9 @@ public class SideButton extends JPanel {
         Image newimg = img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imgIcon = new ImageIcon(newimg);
 
-        javax.swing.JButton home = new javax.swing.JButton(imgIcon);
+        javax.swing.JLabel home = new javax.swing.JLabel(imgIcon);
         home.setPreferredSize(new Dimension(40,40));
+
         add(home, BorderLayout.WEST);
         add(new JLabel(text,20,Color.decode("#0f0f0f"),Font.BOLD),BorderLayout.EAST);
        
@@ -28,7 +29,7 @@ public class SideButton extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    new CustomView(text,user,database);
+                    new CustomView(text,pic,user,database);
                     f.dispose();
                 } catch (SQLException e1) {
                 }

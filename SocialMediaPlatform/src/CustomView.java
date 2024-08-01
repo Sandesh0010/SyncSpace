@@ -20,7 +20,7 @@ import javax.swing.Icon;
 
 
 public class CustomView {
-    public CustomView(String view, User user, Database database) throws SQLException{
+    public CustomView(String view,String pic, User user, Database database) throws SQLException{
         JFrame frame = new JFrame();
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
@@ -41,14 +41,15 @@ public class CustomView {
         JPanel north = new JPanel(new BorderLayout());
         north.setBackground(null);
         north.add(new JLabel(view, 20, Color.black, Font.BOLD),BorderLayout.WEST);
-        ImageIcon icon = new ImageIcon("C:\\Users\\Home\\Downloads\\"+view+".png");
+
+        ImageIcon icon = new ImageIcon("C:\\Users\\Home\\Downloads\\"+pic+".png");
         Image img = icon.getImage();
         Image newimg = img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imgIcon = new ImageIcon(newimg);
         
         javax.swing.JButton home = new javax.swing.JButton(imgIcon);
         home.setPreferredSize(new Dimension(40,40));
-        //javax.swing.JButton home = new javax.swing.JButton(new ImageIcon("home.jpg"));
+        
         home.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         home.addActionListener(new ActionListener() {

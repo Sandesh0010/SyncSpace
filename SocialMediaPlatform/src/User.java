@@ -10,6 +10,7 @@ public class User {
     private ArrayList<PostModel> likes;
     private ArrayList<User> friends;
     private ArrayList<Integer> friendID;
+    private ArrayList<Integer> likesIDs;
 
     
     public User(){
@@ -18,6 +19,7 @@ public class User {
         likes = new ArrayList<>();
         friends = new ArrayList<>();
         friendID = new ArrayList<>();
+        likesIDs = new ArrayList<>();
 
     }
 
@@ -61,6 +63,11 @@ public class User {
     public void setPassword(String password){
         this.password = password;
     }
+
+    public ArrayList<Integer> getLikesIDs(){
+        return likesIDs;
+    }
+    public void se
 
     public ArrayList<PostModel> getPosts(){
         return posts;

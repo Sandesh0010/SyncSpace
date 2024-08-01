@@ -117,7 +117,7 @@ public class Userpage {
         ArrayList<PostModel> posts = new GenerateTimeline(user, database).getPosts();
         for(int i=0; i<posts.size();i++){
             panel.add(Box.createVerticalStrut(7));
-            panel.add(new Post(posts.get(i)));
+            panel.add(new Post(user,posts.get(i),database));
         }
         
         frame.add(new JScrollPane(panel),BorderLayout.CENTER);

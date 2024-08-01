@@ -89,7 +89,14 @@ public class Database{
                 ArrayList<Integer> friendsID = new ArrayList<>();
                 while (rs2.next()) {
                     friendsID.add(rs2.getInt("Friend"));
-                    user.setFriendsIDs(friendsID);
+                }
+                user.setFriendsIDs(friendsID);
+                
+                PreparedStatement likepostStatement = conn.prepareStatement("Select * from likes where userID = "+user.getID()+";");
+                ResultSet rs3 = likepostStatement.executeQuery();
+                ArrayList<Integer> likedPostsIDs = new ArrayList<>();
+                while (rs3.next()) {
+                    likedPostsIDs.add(rs3.getInt("postID"));
                 }
 
             }
@@ -145,6 +152,39 @@ public class Database{
        } catch (SQLException e) { return false;}
    }
     
+    public boolean likePost(User user, PostModel post){
+        boolean liked = false;
+        try {
+            PreparedStatement likePostStatement = conn.prepareStatement("INSERT into likes (userID,postID) values(?,?)");
+            likePostStatement.setInt(1, user.getID());
+            likePostStatement.setInt(2, post.getID());
+            likePostStatement.executeUpdate();
+            liked = true;
+
+        } catch (SQLException e) {
+            liked = false;
+            e.printStackTrace();
+        }
+        return liked;
+        
+    } 
+
+    public boolean removelikePost(User user,PostModel post){
+        boolean liked = false;
+        try {
+            PreparedStatement likePostStatement = conn.prepareStatement("Delete from likes where userID = ? AND postID = ?;");
+            likePostStatement.setInt(1, user.getID());
+            likePostStatement.setInt(2, post.getID());
+
+            likePostStatement.executeUpdate();
+            liked = true;
+        } catch (SQLException e) {
+            liked = false;
+            e.printStackTrace();
+        }
+        return liked;
+    }
+
     public Statement getStatement() {
         return statement;
     }
