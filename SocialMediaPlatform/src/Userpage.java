@@ -3,9 +3,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javax.swing.*;
-import javax.swing.border.Border;
 
 public class Userpage {
     Userpage(User user,Database database){
@@ -32,7 +30,33 @@ public class Userpage {
         profile.setBackground(Color.white);
         sideBar.add(Box.createVerticalStrut(5));
         profile.add(new JLabel(user.getName(),20, Color.BLACK, Font.BOLD));
+        profile.setCursor(new Cursor(Cursor.HAND_CURSOR));
         sideBar.add(profile);
+
+        
+        profile.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                new ModifyUser(user);
+                frame.dispose();
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                
+            }
+            @Override
+            public void mouseReleased(MouseEvent e) {
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                profile.setBackground(Color.lightGray);
+            }
+            @Override
+            public void mouseExited(MouseEvent e) {
+                profile.setBackground(Color.white);
+            }
+        });
 
         sideBar.add(Box.createVerticalStrut(5));
         sideBar.add(new SideButton("Home", "home",user,database,frame));

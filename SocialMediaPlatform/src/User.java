@@ -67,7 +67,7 @@ public class User {
     public ArrayList<Integer> getLikesIDs(){
         return likesIDs;
     }
-    public void se
+    // public void se
 
     public ArrayList<PostModel> getPosts(){
         return posts;

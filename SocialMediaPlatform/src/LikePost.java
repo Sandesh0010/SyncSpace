@@ -11,6 +11,7 @@ public class LikePost {
     public boolean isLiked(User user, PostModel post){
         return database.likePost(user, post);
     }
+    
     public boolean removeLike(User user, PostModel post){
         return database.removelikePost(user,post);
     }

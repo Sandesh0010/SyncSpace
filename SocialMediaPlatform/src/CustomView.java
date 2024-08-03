@@ -1,22 +1,8 @@
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Cursor;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.FocusAdapter;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Icon;
+import java.awt.*;
+import java.awt.event.*;
+import java.sql.*;
+import java.util.*;
+import javax.swing.*;
 
 
 public class CustomView {
@@ -42,7 +28,7 @@ public class CustomView {
         north.setBackground(null);
         north.add(new JLabel(view, 20, Color.black, Font.BOLD),BorderLayout.WEST);
 
-        ImageIcon icon = new ImageIcon("C:\\Users\\Home\\Downloads\\"+pic+".png");
+        ImageIcon icon = new ImageIcon("C:\\Users\\Home\\Downloads\\home.png");
         Image img = icon.getImage();
         Image newimg = img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imgIcon = new ImageIcon(newimg);
@@ -75,7 +61,8 @@ public class CustomView {
                     panel.add(new Friend(user,database,u));
                 }
                 break;
-        
+            
+            
             default:
                 break;
         }

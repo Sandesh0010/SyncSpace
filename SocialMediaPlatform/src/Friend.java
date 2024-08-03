@@ -13,7 +13,6 @@ public class Friend extends JPanel{
         JLabel author = new JLabel(u.getFirstName()+' '+u.getLastName(),20,Color.BLACK,Font.BOLD);
         add(author,BorderLayout.WEST);
 
-       
         JPanel right = new JPanel(new FlowLayout(FlowLayout.LEADING));
         right.setBackground(null);
         JButton addFriend = new JButton("Follow", 35, 17);
@@ -49,8 +48,6 @@ public class Friend extends JPanel{
                     addFriend.setVisible(false);
                     remove.setVisible(true);
                 }
-                   
-
             }
 
             @Override
@@ -67,8 +64,7 @@ public class Friend extends JPanel{
 
             @Override
             public void mouseExited(MouseEvent e) {
-            }
-            
+            }           
         });
 
         remove.addMouseListener(new MouseListener() {

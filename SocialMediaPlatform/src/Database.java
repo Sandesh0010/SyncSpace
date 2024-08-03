@@ -45,6 +45,16 @@ public class Database{
 
     }
 
+    public void modifyUser(String firstName, String lastName, String password, User user) throws SQLException{
+        //String insert= "INSERT into users (FirstName,LastName,Email,password) values ("+u.getFirstName()+","+u.getLastName()+","+u.getEmail()+","+u.getPassword()+");";
+        PreparedStatement insertStatement= conn.prepareStatement("Update users set FirstName = ?,LastName = ?,Password = ? where ID = "+user.getID()+";");
+        insertStatement.setString(1, firstName);
+        insertStatement.setString(2, lastName);
+        insertStatement.setString(3, password);
+        insertStatement.executeUpdate();
+
+    }
+
     public boolean checkloginUser(String email, String password) throws SQLException{
         PreparedStatement viewStatement = conn.prepareStatement("SELECT * from users");
         ResultSet rs = viewStatement.executeQuery();

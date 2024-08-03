@@ -34,7 +34,7 @@ public class Post extends JPanel{
         likes.setBackground(null);
         ImageIcon icon = new ImageIcon("C:\\Users\\Home\\Downloads\\like.png");
         Image img = icon.getImage();
-        Image newimg = img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
         ImageIcon imgIcon = new ImageIcon(newimg);
 
         ImageIcon likedicon = new ImageIcon("C:\\Users\\Home\\Downloads\\liked.png");
