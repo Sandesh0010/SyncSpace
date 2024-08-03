@@ -67,7 +67,17 @@ public class User {
     public ArrayList<Integer> getLikesIDs(){
         return likesIDs;
     }
-    // public void se
+    public void setLikesIDs(ArrayList<Integer> likesIDs){
+        this.likesIDs = likesIDs;
+    }
+
+    boolean liked(PostModel p){
+        return likesIDs.contains(p.getID());
+    }
+
+    public void like(PostModel p){
+        likesIDs.add(p.getID());
+    }
 
     public ArrayList<PostModel> getPosts(){
         return posts;

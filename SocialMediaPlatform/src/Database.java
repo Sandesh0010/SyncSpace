@@ -108,6 +108,7 @@ public class Database{
                 while (rs3.next()) {
                     likedPostsIDs.add(rs3.getInt("postID"));
                 }
+                user.setLikesIDs(likedPostsIDs);
 
             }
         }
@@ -193,6 +194,20 @@ public class Database{
             e.printStackTrace();
         }
         return liked;
+    }
+
+    public int likeCount(PostModel post){
+        int likeCount = 0;
+        try {
+            PreparedStatement likeCountStatement = conn.prepareStatement("Select Count(userID) as count from likes where postID = "+post.getID());
+            ResultSet rs = likeCountStatement.executeQuery();
+            while (rs.next()) {
+                likeCount = rs.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return likeCount;
     }
 
     public Statement getStatement() {

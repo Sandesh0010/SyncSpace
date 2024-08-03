@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.SQLException;
 
 public class Post extends JPanel{
     public Post(User user, PostModel post, Database database){
@@ -45,10 +46,23 @@ public class Post extends JPanel{
         javax.swing.JLabel like = new javax.swing.JLabel(imgIcon);
         javax.swing.JLabel liked = new javax.swing.JLabel(likedImgIcon);
         like.setPreferredSize(new Dimension(50,50));
-        liked.setPreferredSize(new Dimension(50,50));
+        liked.setPreferredSize(new Dimension(50,50)); 
+        boolean likeed = user.liked(post);
+        like.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        liked.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        likes.add(like);
+        likes.add(liked);
+        JLabel likeCount = new JLabel(database.likeCount(post)+" likes", 15, Color.lightGray, Font.BOLD);
+        likes.add(likeCount);
+
+       if(likeed){
+            like.setVisible(false);
+            liked.setVisible(true);
+       }
+       else{
         like.setVisible(true);
         liked.setVisible(false);
-       
+       }
         like.addMouseListener(new MouseListener() {
 
             @Override
@@ -56,6 +70,13 @@ public class Post extends JPanel{
                 if(new LikePost(user, post, database).isLiked(user, post)){
                     like.setVisible(false);
                     liked.setVisible(true);
+                    user.like(post); 
+                  
+                    likes.remove(likeCount);
+                    likeCount.setText(database.likeCount(post)+" likes");
+                    likes.add(likeCount);
+
+                    
                 }
             }
 
@@ -81,6 +102,10 @@ public class Post extends JPanel{
                 if(new LikePost(user, post, database).removeLike(user, post)){
                     like.setVisible(true);
                     liked.setVisible(false);
+                        likes.remove(likeCount);
+                    likeCount.setText(database.likeCount(post)+" likes");
+                        likes.add(likeCount);
+                    
                 }
             }
 
@@ -94,15 +119,10 @@ public class Post extends JPanel{
             public void mouseEntered(MouseEvent e) {}
 
             @Override
-            public void mouseExited(MouseEvent e) {}
-            
-            
+            public void mouseExited(MouseEvent e) {}       
         });
         
-        likes.add(like);
-        likes.add(liked);
-
-        likes.add(new JLabel("0 likes", 15, Color.lightGray, Font.BOLD));
+        
         
         bottom.add(likes,BorderLayout.WEST);
         JLabel comments = new JLabel("0 comments", 15, Color.lightGray,Font.BOLD);
