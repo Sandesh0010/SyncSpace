@@ -210,6 +210,46 @@ public class Database{
         return likeCount;
     }
 
+    public void createComment(User user, PostModel post, String content,String dateTime ) throws SQLException{
+        PreparedStatement createComStatement = conn.prepareStatement("Insert into comments(Content,postID,userID,DateTime,userName) values(?,?,?,?,?)");
+        createComStatement.setString(1, content);
+        createComStatement.setInt(2, post.getID());
+        createComStatement.setInt(3, user.getID());
+        createComStatement.setString(4, dateTime);
+        createComStatement.setString(5, user.getName());
+
+        createComStatement.executeUpdate();
+    }
+    public ArrayList<CommentModel> readPostComments(PostModel p) throws SQLException{
+        ArrayList<CommentModel> cmt = new ArrayList<>();
+        PreparedStatement getComStatement = conn.prepareStatement("Select * from comments where postID ="+p.getID());
+        ResultSet rs = getComStatement.executeQuery();
+        while (rs.next()) {
+            CommentModel commentModel = new CommentModel();
+            commentModel.setID(rs.getInt("ID"));
+            commentModel.setContent(rs.getString("Content"));
+            commentModel.setDateTimeFromToString(rs.getString("DateTime"));
+            commentModel.setUser(rs.getInt("userID"));
+            commentModel.setpostID(rs.getInt("postID"));
+            commentModel.setuserName(rs.getString("userName"));
+            cmt.add(commentModel);
+        }
+        return cmt;
+        
+    }
+
+    public int getCommentCount(PostModel p){
+        int comments = 0;
+        try {
+            PreparedStatement getComStatement = conn.prepareStatement("Select count(ID) as count from comments where postID = "+p.getID());
+        ResultSet rs = getComStatement.executeQuery();
+        while (rs.next()) {
+            comments = rs.getInt("count");
+        }
+        } catch (Exception e) { }
+        
+        return comments;
+    }
     public Statement getStatement() {
         return statement;
     }

@@ -3,6 +3,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.Frame;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -12,12 +17,12 @@ import javax.swing.JPanel;
 import javax.xml.crypto.Data;
 
 public class Comments {
-    public Comments(User user, Database database){
+    public Comments(User user, Database database,PostModel post, Frame frame2) throws SQLException{
         JFrame frame = new JFrame();
         frame.setSize(900,625);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Comment comm= new Comment();
+        //Comment comm= new Comment();
 
         //sidebar
         JPanel sideBar = new JPanel();
@@ -34,7 +39,7 @@ public class Comments {
         profile.setMaximumSize(new Dimension(180,50));
         profile.setBackground(Color.white);
         sideBar.add(Box.createVerticalStrut(5));
-        profile.add(new JLabel("ReDflag",20, Color.BLACK, Font.BOLD));
+        profile.add(new JLabel(user.getName(),20, Color.BLACK, Font.BOLD));
         sideBar.add(profile);
 
         sideBar.add(Box.createVerticalStrut(5));
@@ -51,12 +56,13 @@ public class Comments {
 
         frame.add(sideBar,BorderLayout.WEST);
         //end
+
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBackground(null);
 
-        // panel.add(new Post());
-        // panel.add(Box.createVerticalStrut(7));
+        panel.add(new Post(user,post,database,frame));
+        panel.add(Box.createVerticalStrut(7));
 
         JPanel newComment = new JPanel(new BorderLayout());
         newComment.setBackground(Color.white);
@@ -73,13 +79,46 @@ public class Comments {
         commetBtn.setPreferredSize(new Dimension(80,37));
         newComment.add(commetBtn,BorderLayout.EAST);
 
+        newComment.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) { 
+                if(commentIn.isEmpty()){
+                    new Alert("Comment cannot be empty", frame);
+                    return;
+                }
+                CommentModel c = new CommentModel(commentIn.getText(),user);
+                try {
+                    database.createComment(user, post, commentIn.getText(), c.getDateTimeToString());
+                    new Alert("Comment Succesfully inserted", frame);
+                    commentIn.setText("");
+                } catch (SQLException e1) {
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) { }
+
+            @Override
+            public void mouseReleased(MouseEvent e) { }
+
+            @Override
+            public void mouseEntered(MouseEvent e) { }
+
+            @Override
+            public void mouseExited(MouseEvent e) { }
+            
+        });
         panel.add(newComment);
         panel.add(Box.createVerticalStrut(7));
 
-        for(int i =0;i<10;i++){
-            panel.add(new Comment());
+        ArrayList<CommentModel> cmt = new ArrayList<>();
+        cmt = database.readPostComments(post);
+        for (CommentModel commentModel : cmt) {
+            panel.add(new Comment(commentModel));
             panel.add(Box.createVerticalStrut(7));
         }
+        
        
         frame.add(new JScrollPane(panel),BorderLayout.CENTER);
         frame.requestFocus();

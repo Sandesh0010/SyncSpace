@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import javax.swing.*;
 
 public class Userpage {
-    Userpage(User user,Database database){
+    Userpage(User user,Database database) throws SQLException{
        
         JFrame frame = new JFrame("HomePage for User");
         frame.setSize(900,625);
@@ -141,7 +141,7 @@ public class Userpage {
         ArrayList<PostModel> posts = new GenerateTimeline(user, database).getPosts();
         for(int i=0; i<posts.size();i++){
             panel.add(Box.createVerticalStrut(7));
-            panel.add(new Post(user,posts.get(i),database));
+            panel.add(new Post(user,posts.get(i),database,frame));
         }
         
         frame.add(new JScrollPane(panel),BorderLayout.CENTER);

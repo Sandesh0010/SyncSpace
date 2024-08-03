@@ -42,7 +42,12 @@ public class CustomView {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Userpage(user, database);
+                try {
+                    new Userpage(user, database);
+                } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
                 frame.dispose();
             }
             

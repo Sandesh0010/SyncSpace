@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.sql.SQLException;
 
 public class Post extends JPanel{
-    public Post(User user, PostModel post, Database database){
+    public Post(User user, PostModel post, Database database, Frame frame) throws SQLException{
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
         setBackground(Color.white);
         setBorder(BorderFactory.createEmptyBorder(15,15,15,25));
@@ -122,12 +122,46 @@ public class Post extends JPanel{
             public void mouseExited(MouseEvent e) {}       
         });
         
-        
-        
+      
+        ImageIcon commentIcon = new ImageIcon("C:\\Users\\Home\\Downloads\\comment.png");
+        Image commentimg = commentIcon.getImage();
+        Image cmtImg = commentimg.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon commentImagefinal = new ImageIcon(cmtImg);
+
+        javax.swing.JLabel commentlbl = new javax.swing.JLabel(commentImagefinal);
+        JPanel comments = new JPanel();
+        comments.add(commentlbl);
         bottom.add(likes,BorderLayout.WEST);
-        JLabel comments = new JLabel("0 comments", 15, Color.lightGray,Font.BOLD);
+        JLabel comment = new JLabel(database.getCommentCount(post)+" comments", 15, Color.lightGray,Font.BOLD);
+        comments.add(comment);
+        comments.setBackground(Color.white);
         bottom.add(comments,BorderLayout.EAST);
         add(bottom);
+        comments.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        comments.addMouseListener(new MouseListener() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                try {
+                    new Comments(user,database,post,frame);
+                } catch (SQLException e1) {  }
+                frame.dispose();
+             }
+
+            @Override
+            public void mousePressed(MouseEvent e) { }
+
+            @Override
+            public void mouseReleased(MouseEvent e) { }
+
+            @Override
+            public void mouseEntered(MouseEvent e) { comments.setBackground(Color.lightGray); }
+
+            @Override
+            public void mouseExited(MouseEvent e) { comments.setBackground(Color.white);  }
+            
+        });
+
 
         int height = (int) (115+content.getPreferredSize().getHeight());
 
